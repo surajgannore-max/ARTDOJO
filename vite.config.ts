@@ -21,18 +21,24 @@ export default defineConfig(({ mode }) => {
         }
       },
       build: {
-        chunkSizeWarningLimit: 1600,
+        chunkSizeWarningLimit: 2000,
         rollupOptions: {
           output: {
             manualChunks(id) {
               if (id.includes('node_modules')) {
-                if (id.includes('react') || id.includes('scheduler') || id.includes('dom')) {
-                  return 'vendor-framework';
+                if (id.includes('react/') || id.includes('react-dom/') || id.includes('scheduler/') || id.includes('react-is/')) {
+                  return 'vendor-react';
                 }
                 if (id.includes('@google/genai')) {
                   return 'vendor-ai';
                 }
-                return 'vendor';
+                if (id.includes('@vercel/analytics')) {
+                  return 'vendor-analytics';
+                }
+                if (id.includes('motion') || id.includes('framer-motion')) {
+                  return 'vendor-motion';
+                }
+                return 'vendor-utils';
               }
             },
           },
