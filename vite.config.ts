@@ -26,6 +26,12 @@ export default defineConfig(({ mode }) => {
           output: {
             manualChunks(id) {
               if (id.includes('node_modules')) {
+                if (id.includes('react') || id.includes('scheduler') || id.includes('dom')) {
+                  return 'vendor-framework';
+                }
+                if (id.includes('@google/genai')) {
+                  return 'vendor-ai';
+                }
                 return 'vendor';
               }
             },
