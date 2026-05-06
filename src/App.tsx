@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { UserProfile, Quest, Critique, Rank } from './types';
 import { ARTIST_RANKS, SEVEN_DAY_CHALLENGE, RIVAL_DATA } from './constants';
 import Dashboard from './components/Dashboard';
@@ -88,19 +89,25 @@ const App: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen bg-gray-900 font-sans flex flex-col md:flex-row">
+    <div className="min-h-screen bg-gray-900 font-sans flex flex-col md:flex-row text-gray-100 selection:bg-orange-500/30">
       <Analytics />
       <ProfileSidebar userProfile={userProfile} rival={RIVAL_DATA} />
-      <main className="flex-1 p-4 sm:p-6 lg:p-8">
-        <Header />
-        <Dashboard
-          quest={currentQuest}
-          onQuestComplete={handleQuestComplete}
-          critique={critique}
-          isCritiquing={isCritiquing}
-          error={error}
-          onCloseCritique={() => setCritique(null)}
-        />
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.5 }}
+        >
+          <Header />
+          <Dashboard
+            quest={currentQuest}
+            onQuestComplete={handleQuestComplete}
+            critique={critique}
+            isCritiquing={isCritiquing}
+            error={error}
+            onCloseCritique={() => setCritique(null)}
+          />
+        </motion.div>
       </main>
     </div>
   );

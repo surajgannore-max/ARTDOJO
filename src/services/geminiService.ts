@@ -5,9 +5,13 @@ let genAI: GoogleGenAI | null = null;
 
 function getGenAI(): GoogleGenAI {
   if (!genAI) {
-    const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+    // Check various common locations for the API key
+    const API_KEY = 
+      import.meta.env.VITE_GEMINI_API_KEY || 
+      (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : undefined);
+
     if (!API_KEY) {
-      throw new Error("VITE_GEMINI_API_KEY is not set. Please set it in your environment variables.");
+      throw new Error("Gemini API Key is not set. Please set VITE_GEMINI_API_KEY in your environment.");
     }
     genAI = new GoogleGenAI({ apiKey: API_KEY });
   }

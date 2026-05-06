@@ -1,19 +1,16 @@
 
 import { Quest, Rank, Rival } from './types';
-import BrushIcon from './components/icons/BrushIcon';
-import GemIcon from './components/icons/GemIcon';
-import TrophyIcon from './components/icons/TrophyIcon';
-import RivalIcon from './components/icons/RivalIcon';
+import { Brush, Diamond, Trophy, Sword } from 'lucide-react';
 
 export const ARTIST_RANKS: Rank[] = [
-  { title: "Ink Initiate", xpRequired: 0, nextLevelXp: 100, icon: BrushIcon },
-  { title: "Chroma Cadet", xpRequired: 100, nextLevelXp: 300, icon: GemIcon },
-  { title: "Form Forger", xpRequired: 300, nextLevelXp: 700, icon: TrophyIcon },
-  { title: "Perspective Prodigy", xpRequired: 700, nextLevelXp: 1500, icon: RivalIcon },
-  { title: "Anatomy Archon", xpRequired: 1500, nextLevelXp: 3000, icon: BrushIcon },
-  { title: "Render Renegade", xpRequired: 3000, nextLevelXp: 5000, icon: GemIcon },
-  { title: "Composition King", xpRequired: 5000, nextLevelXp: 10000, icon: TrophyIcon },
-  { title: "Storytelling Sovereign", xpRequired: 10000, nextLevelXp: 99999, icon: RivalIcon },
+  { title: "Ink Initiate", xpRequired: 0, nextLevelXp: 100, icon: Brush },
+  { title: "Chroma Cadet", xpRequired: 100, nextLevelXp: 300, icon: Diamond },
+  { title: "Form Forger", xpRequired: 300, nextLevelXp: 700, icon: Trophy },
+  { title: "Perspective Prodigy", xpRequired: 700, nextLevelXp: 1500, icon: Sword },
+  { title: "Anatomy Archon", xpRequired: 1500, nextLevelXp: 3000, icon: Brush },
+  { title: "Render Renegade", xpRequired: 3000, nextLevelXp: 5000, icon: Diamond },
+  { title: "Composition King", xpRequired: 5000, nextLevelXp: 10000, icon: Trophy },
+  { title: "Storytelling Sovereign", xpRequired: 10000, nextLevelXp: 99999, icon: Sword },
 ];
 
 export const SEVEN_DAY_CHALLENGE: Quest[] = [
