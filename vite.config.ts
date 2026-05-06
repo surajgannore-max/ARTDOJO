@@ -12,37 +12,16 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react(), tailwindcss()],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'import.meta.env.VITE_GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       },
       resolve: {
         alias: {
-          '@': path.resolve(__dirname, '.'),
+          '@': path.resolve(__dirname, 'src'),
         }
       },
       build: {
-        chunkSizeWarningLimit: 2000,
-        rollupOptions: {
-          output: {
-            manualChunks(id) {
-              if (id.includes('node_modules')) {
-                if (id.includes('react/') || id.includes('react-dom/') || id.includes('scheduler/') || id.includes('react-is/')) {
-                  return 'vendor-react';
-                }
-                if (id.includes('@google/genai')) {
-                  return 'vendor-ai';
-                }
-                if (id.includes('@vercel/analytics')) {
-                  return 'vendor-analytics';
-                }
-                if (id.includes('motion') || id.includes('framer-motion')) {
-                  return 'vendor-motion';
-                }
-                return 'vendor-utils';
-              }
-            },
-          },
-        },
+        outDir: 'dist',
+        sourcemap: false
       }
     };
 });
