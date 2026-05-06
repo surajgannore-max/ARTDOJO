@@ -21,7 +21,14 @@ export default defineConfig(({ mode }) => {
         }
       },
       build: {
-        chunkSizeWarningLimit: 1000
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'vendor': ['react', 'react-dom', '@google/genai'],
+            },
+          },
+        },
       }
     };
 });
